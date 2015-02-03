@@ -1,0 +1,47 @@
+html {
+	min-height:100%;
+}
+body {
+	@include background(linear-gradient(#000, #222) left repeat);
+	height:100%;
+	font-family: $lucida-grande;
+	h1 {
+		font-family:Roboto;
+		text-align:center;
+		color:#fff;
+		text-shadow: 0 0 10px #000;
+		font-size:24pt;
+	}
+	p {
+		padding:0 100px 50px;
+		padding-left:500px;
+		color:#ffff88;
+		font-weight:100;
+		max-width:500px;
+		margin-left:auto;
+		margin-right:auto;
+		position:relative;
+	}
+	img {
+		width:300px;
+		position:absolute;
+		left:100px;
+		top:100px;
+		margin-right:50px;
+	}
+}
+@media only screen and (max-device-width: 559px) {
+	body {
+		p {
+			margin:0;
+			padding:10px;
+		}
+		img {
+			position:relative;
+			top:0;
+			left:0;
+			margin-left:auto;
+			margin-right:auto;
+		}
+	}
+}
