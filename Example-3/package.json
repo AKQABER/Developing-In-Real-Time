@@ -1,0 +1,48 @@
+{
+  "name": "client-cq-integration",
+  "version": "0.0.0",
+  "dependencies": {
+    "bluebird": "^2.3.11",
+    "grunt": "^0.4.5",
+    "lodash": "^3.1.0"
+  },
+  "repository": [
+    {
+      "type": "git",
+      "url": ""
+    }
+  ],
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "chai-as-promised": "^4.1.1",
+    "connect-livereload": "^0.5.2",
+    "grunt-combine-mq": "^0.6.0",
+    "grunt-connect-proxy": "^0.1.11",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-concat": "^0.5.0",
+    "grunt-contrib-connect": "^0.9.0",
+    "grunt-contrib-cssmin": "^0.11.0",
+    "grunt-contrib-jasmine": "^0.8.2",
+    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-contrib-uglify": "^0.7.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-data-uri": "^0.2.0",
+    "grunt-env": "^0.4.2",
+    "grunt-mocha-test": "^0.12.7",
+    "grunt-plato": "^1.2.1",
+    "grunt-sass": "^0.17.0",
+    "grunt-smart-vlt": "^0.1.0",
+    "grunt-strip-code": "^0.1.2",
+    "grunt-template-jasmine-istanbul": "^0.3.2",
+    "grunt-zombie": "dazld/grunt-zombie#error",
+    "http-rewrite-middleware": "^0.1.6",
+    "load-grunt-tasks": "^3.0.0",
+    "mocha": "^2.1.0",
+    "time-grunt": "^1.0.0",
+    "zombie": "^2.5.1"
+  },
+  "peerDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-cli": "^0.1.13"
+  }
+}

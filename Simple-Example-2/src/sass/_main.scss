@@ -2,9 +2,9 @@ html {
 	min-height:100%;
 }
 body {
-	background:#300;
+	@include background(linear-gradient(#000, #222) left repeat);
 	height:100%;
-	font-family: 'Arial', 'Helvetica', 'sans-serif';
+	font-family: $lucida-grande;
 	h1 {
 		font-family:Roboto;
 		text-align:center;
