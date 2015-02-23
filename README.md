@@ -2,7 +2,7 @@
 Developing in real time. Using automation to enhance the develop &amp; design experience.
 
 ####Example 1: Runnable demo
-This is a simple example showing some of the concepts I talk about in my "Developing in Real Time" article. You can `npm install` this and then run `grunt server`. Visit http://localhost:9000] in your browser to see the results.
+This is a simple example showing some of the concepts I talk about in my "Developing in Real Time" article. You can `npm install` this and then run `grunt server`. Visit [http://localhost:9000](http://localhost:9000) in your browser to see the results.
 With this, all the source files live in the `src` folder, which is kept under version control, and the generated files all end up in the `dist` folder, which is then served by the Connect server.
 
 When a change is made to an  HTML, JS, CSS, Image or font file, the associated task with that file type is carried out and then the browser is reloaded.
