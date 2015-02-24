@@ -9,15 +9,13 @@
     var rewrites = [
         // Javascript
         {from: "^/.*/publish.min.([0-9]+).js$", to: "/core/js/app.min.js"},
-        {from: "^/.*/locator.min.([0-9]+).js$", to: "/core/js/locator/js/locator.min.js"},
         // CSS
         {from: "^/.*/publish.min.([0-9]+).css(.*)?$", to: "/core/css/app.min.css$2"},
         {from: "^/.*/app.min.css.map$", to: "/core/css/app.min.css.map"},
-        {from: "/etc/designs/richemont-pan/clientlibs/core/css/ie.min.css(.*)?$", to: "/core/css/ie/css/ie.min.css$1"},
-        {from: "^/.*/main-ie1.min.css(.*)?$", to: "/core/main-ie1/main-ie1.min.css$1"},
-        {from: "^/.*/main-ie2.min.css(.*)?$", to: "/core/main-ie2/main-ie2.min.css$1"},
+        {from: "/core/css/ie.min.css(.*)?$", to: "/core/css/ie/css/ie.min.css$1"},
+        
         // Images
-        {from: "/richemont-pan/(img|fonts|swf)/", to: "/richemont-pan/clientlibs/core/$1/"}
+        {from: "/apppath/(img|fonts|swf)/", to: "/local/clientlibs/core/$1/"}
     ];
     var mountFolder = function (connect, dir, dir2) {
         if (dir2) {
@@ -31,11 +29,11 @@
         });
         require('time-grunt')(grunt);
 
-        var bin = "cms-pan-design-package/bin",
-            jcr_root = "cms-pan-design-package/src/main/content/jcr_root/",
-            clientlibs = jcr_root + "etc/designs/richemont-pan/clientlibs",
-            tests = "cms-pan-design-package/src/test/js",
-            proto = "cms-pan-design-package/prototype";
+        var bin = "cms-design-package/bin",
+            jcr_root = "cms-design-package/src/main/content/jcr_root/",
+            clientlibs = jcr_root + "etc/designs/client-cms/clientlibs",
+            tests = "cms-design-package/src/test/js",
+            proto = "cms-design-package/prototype";
 
         grunt.initConfig({
             bin: bin,
@@ -85,7 +83,7 @@
                     options: {livereload: true}
                 },
                 mochaTest: {
-                    files: ["cms-pan-design-package/src/test/**/*.*"],
+                    files: ["cms-design-package/src/test/**/*.*"],
                     tasks: ["mochaTest"]
                 },
                 html: {
@@ -93,7 +91,7 @@
                     options: {livereload: true}
                 },
                 jsp: {
-                    files: ["cms-pan-ui/cms-pan-ui-package/src/main/content/jcr_root/apps/richemont-pan/ui/**/*.jsp"],
+                    files: ["cms-ui/cms-ui-package/src/main/content/jcr_root/apps/client-cms/ui/**/*.jsp"],
                     tasks: ["svlt"],
                     options: {
                         livereload: true,
@@ -219,7 +217,7 @@
                         reporter: 'spec',
                         quiet: false
                     },
-                    src: ["cms-pan-design-package/src/test/index.js"]
+                    src: ["cms-design-package/src/test/index.js"]
                 }
                 
             },
@@ -229,7 +227,7 @@
                         "<%= bin %>/js/complexity": [
                             "<%= clientlibs %>/core/jssrc/*.js",
                             "!<%= clientlibs %>/core/jssrc/worldcoords.js",
-                            "cms-pan-design-package/src/test/js/*.js"
+                            "cms-design-package/src/test/js/*.js"
                         ]
                     }
                 }
@@ -255,7 +253,7 @@
                                 liveReloadSnippet,
                                 rewriteModule.getMiddleware(rewrites),
                                 mountFolder(connect, clientlibs),
-                                mountFolder(connect, 'cms-pan-design-package'),
+                                mountFolder(connect, 'cms-design-package'),
                                 proxySnippet
                             ];
                         }
@@ -280,7 +278,7 @@
                                 },
                                 rewriteModule.getMiddleware(rewrites),
                                 mountFolder(connect, clientlibs),
-                                mountFolder(connect, 'cms-pan-design-package'),
+                                mountFolder(connect, 'cms-design-package'),
                                 proxySnippet
                             ];
                         }
@@ -321,7 +319,7 @@
             },
             svlt: {
                 options: {
-                    vaultWork: '../cms-pan-ui/cms-pan-ui-package/src/main/content/jcr_root/apps/richemont-pan/ui/',
+                    vaultWork: '../cms-ui/cms-ui-package/src/main/content/jcr_root/apps/client-cms/ui/',
                     src: ['**/*.jsp'],
                     stdout: true,
                     multithread: true,
@@ -342,19 +340,13 @@
                     "<%=clientlibs%>/core/css/app.min.css.map",
                     "<%=clientlibs%>/core/css/ie/css/ie.min.css",
                     "<%=clientlibs%>/core/css/ie/css/ie.min.css.map",
-                    "<%=clientlibs%>/core/js/app.min.js",
-                    "<%=clientlibs%>/core/js/locator/js/locator.min.js",
-                    "<%=clientlibs%>/core/main-ie1/main-ie1.min.css",
-                    "<%=clientlibs%>/core/main-ie1/main-ie1.min.css.map",
-                    "<%=clientlibs%>/core/main-ie2/main-ie2.min.css",
-                    "<%=clientlibs%>/core/main-ie2/main-ie2.min.css.map"
+                    "<%=clientlibs%>/core/js/app.min.js"
                 ]
             }
         });
         grunt.registerTask('set', 'Set server port', function(name, val) {
             grunt.config.set(name, val);
         });
-        grunt.registerTask("testdev", ["jshint", "set:port:4503", "set:host:dev-cqp.pan.akqa.net", "configureProxies","connect:testserver","mochaTest"/*, "plato"*/]);
         grunt.registerTask("test", ["jshint", "configureProxies","connect:testserver","mochaTest"/*, "plato"*/]);
         grunt.registerTask("build", ["concat", "uglify", "strip_code", "sass:dist", "dataUri", "cssmin", "testdev"]);
         grunt.registerTask("rundevserver", ["concat", "sass:dev", "test", "configureProxies", "connect:livereload", "watch"]);
