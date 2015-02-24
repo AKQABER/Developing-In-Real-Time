@@ -282,7 +282,7 @@
                 serverjs: {
                     files: [
                         'options.js',
-                        'finnair.js',
+                        'fa.js',
                         'dispatcher.js',
                         'routes/*.js',
                         'src/isojs/*.js'
